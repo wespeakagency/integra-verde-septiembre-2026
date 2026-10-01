@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Integra Verde | Reporte septiembre 2026</title>
+  <meta name="description" content="Reporte digital de Integra Verde con cierre al 29 de septiembre de 2026.">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+    :root {
+      --black:#050705;
+      --ink:#111511;
+      --paper:#f4f6f2;
+      --panel:#111711;
+      --panel-2:#182018;
+      --line:rgba(255,255,255,.12);
+      --muted:#a9b3a8;
+      --white:#f7faf4;
+      --green:#93d52b;
+      --green-2:#42a85a;
+      --green-3:#d6f59a;
+      --soft:#e6eddf;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0;
+      background:var(--black);
+      color:var(--white);
+      font-family:Montserrat, Arial, sans-serif;
+      line-height:1.55;
+    }
+    a { color:inherit; }
+    .wrap { width:min(1180px, calc(100% - 48px)); margin:auto; }
+    .hero {
+      min-height:710px;
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      align-items:flex-end;
+      background:#050705;
+    }
+    .hero:after {
+      content:"";
+      position:absolute;
+      inset:auto -8% -45% 40%;
+      height:55%;
+      background:radial-gradient(ellipse, rgba(147,213,43,.22), transparent 66%);
+      pointer-events:none;
+    }
+    nav {
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      z-index:2;
+      padding:26px 0;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .nav-inner { display:flex; justify-content:space-between; align-items:center; gap:24px; }
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:12px;
+    }
+    .brand img { width:48px; height:48px; object-fit:contain; filter:brightness(0) invert(1); }
+    .eyebrow {
+      color:var(--green);
+      font-size:11px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      font-weight:800;
+    }
+    .hero-copy { position:relative; z-index:1; padding:112px 0 88px; max-width:900px; }
+    h1, h2, h3, p { margin-top:0; }
+    h1 {
+      font-size:clamp(44px, 8vw, 108px);
+      line-height:.92;
+      letter-spacing:0;
+      text-transform:uppercase;
+      margin:18px 0 28px;
+      font-weight:900;
+    }
+    h1 span { color:transparent; -webkit-text-stroke:1px rgba(255,255,255,.72); }
+    .lead { max-width:720px; color:#d6ded2; font-size:18px; font-weight:400; }
+    .period {
+      display:inline-flex;
+      margin-top:28px;
+      padding:10px 15px;
+      border:1px solid rgba(147,213,43,.55);
+      color:var(--green-3);
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:11px;
+      font-weight:700;
+    }
+    section { padding:92px 0; }
+    .light { background:var(--paper); color:var(--ink); }
+    .section-kicker {
+      color:var(--green-2);
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.2em;
+      font-weight:800;
+      margin-bottom:14px;
+    }
+    h2 {
+      font-size:clamp(32px, 5vw, 64px);
+      line-height:.98;
+      letter-spacing:0;
+      text-transform:uppercase;
+      font-weight:900;
+      margin-bottom:18px;
+    }
+    h3 {
+      font-size:18px;
+      line-height:1.15;
+      text-transform:uppercase;
+      letter-spacing:0;
+      margin-bottom:12px;
+    }
+    .intro { max-width:760px; color:#596259; }
+    .grid { display:grid; gap:16px; }
+    .summary {
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:54px;
+      align-items:start;
+    }
+    .signal {
+      border-left:3px solid var(--green-2);
+      padding:6px 0 6px 23px;
+      color:#344034;
+      font-size:19px;
+    }
+    .signal strong { color:#111511; }
+    .kpis { grid-template-columns:repeat(4, 1fr); margin-top:42px; }
+    .kpi {
+      padding:25px;
+      border:1px solid #dfe5dc;
+      background:#fff;
+      min-height:170px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .kpi.accent { background:var(--green); border-color:var(--green); color:#10150b; }
+    .kpi.pending { background:#f8faf6; border-style:dashed; }
+    .kpi-label {
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-weight:800;
+      color:#687168;
+    }
+    .accent .kpi-label { color:#29430f; }
+    .kpi-value { font-size:42px; line-height:1; font-weight:900; letter-spacing:0; }
+    .kpi-note { font-size:12px; color:#657064; }
+    .accent .kpi-note { color:#29430f; }
+    .cols { grid-template-columns:1fr 1fr; align-items:start; }
+    .panel { background:#fff; border:1px solid #dfe5dc; padding:28px; }
+    .dark-panel { background:var(--panel); border:1px solid var(--line); padding:28px; color:var(--white); }
+    .dark-panel h3, .dark-panel .bar-row, .dark-panel b { color:var(--white); }
+    .dark-panel p, .dark-panel li, .dark-panel .note { color:#c4cfc2; }
+    .top-posts { grid-template-columns:repeat(3, 1fr); margin-top:16px; }
+    .top-post {
+      min-height:218px;
+      padding:24px;
+      border:1px solid var(--line);
+      background:#0d120d;
+      color:var(--white);
+    }
+    .top-post .rank { color:var(--green); font-size:11px; font-weight:800; letter-spacing:.15em; }
+    .top-post h3 { margin:16px 0 26px; }
+    .top-post p { color:#c4cfc2; font-size:13px; margin-bottom:0; }
+    .top-post strong { color:var(--green-3); }
+    .instagram-embed { width:100% !important; min-width:0 !important; margin:22px 0 0 !important; background:#fff !important; }
+    .table { width:100%; border-collapse:collapse; font-size:13px; }
+    .table th {
+      color:#69736b;
+      text-align:left;
+      font-size:10px;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+      padding:0 0 12px;
+      border-bottom:1px solid #dfe5dc;
+    }
+    .table td { padding:13px 0; border-bottom:1px solid #e7ebe5; }
+    .table tr:last-child td { border-bottom:0; }
+    .table .num { text-align:right; font-weight:800; }
+    .history-table tr:last-child td { background:#eaf8d5; font-weight:800; }
+    .chart-wrap { margin-top:45px; background:#101510; border:1px solid var(--line); padding:25px 25px 12px; }
+    .chart { width:100%; height:auto; display:block; }
+    .chart text { fill:#aeb8ad; font:500 12px Montserrat, Arial, sans-serif; }
+    .chart .gridline { stroke:rgba(255,255,255,.1); stroke-width:1; }
+    .chart .axis { stroke:rgba(255,255,255,.22); }
+    .chart .line { fill:none; stroke:var(--green); stroke-width:4; stroke-linecap:round; stroke-linejoin:round; }
+    .chart .line.pending-line { stroke:#dfe5dc; stroke-dasharray:8 8; }
+    .chart .dot { fill:var(--green); stroke:#101510; stroke-width:4; }
+    .chart .dot.pending-dot { fill:#dfe5dc; }
+    .legend { display:flex; gap:22px; flex-wrap:wrap; color:#b8c1b7; font-size:12px; padding:12px 0 0; }
+    .legend i { width:10px; height:10px; display:inline-block; background:var(--green); margin-right:7px; }
+    .note { font-size:12px; color:#7b857b; margin-top:22px; }
+    .checklist { list-style:none; padding:0; margin:24px 0 0; display:grid; gap:14px; }
+    .checklist li {
+      display:grid;
+      grid-template-columns:28px 1fr;
+      gap:12px;
+      align-items:start;
+      color:#3f493f;
+      font-size:14px;
+    }
+    .checklist b {
+      display:grid;
+      place-items:center;
+      width:22px;
+      height:22px;
+      border:1px solid var(--green-2);
+      color:var(--green-2);
+      font-size:12px;
+      line-height:1;
+    }
+    .rec-grid { grid-template-columns:repeat(2, 1fr); margin-top:35px; }
+    .rec { border-top:2px solid var(--green); padding-top:18px; }
+    .rec p { color:#bdc7bc; font-size:14px; }
+    footer {
+      padding:38px 0 60px;
+      background:#050705;
+      border-top:1px solid var(--line);
+      color:#879186;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+    }
+    .footer-inner { display:flex; justify-content:space-between; gap:20px; }
+    @media (max-width:850px) {
+      .wrap { width:min(100% - 34px, 680px); }
+      .hero { min-height:650px; }
+      .summary, .cols { grid-template-columns:1fr; gap:35px; }
+      .kpis, .rec-grid, .top-posts { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width:560px) {
+      section { padding:64px 0; }
+      .nav-inner { align-items:flex-start; flex-direction:column; }
+      .kpis, .rec-grid, .top-posts { grid-template-columns:1fr; }
+      .kpi { min-height:130px; }
+      .hero-copy { padding-bottom:62px; }
+      .lead { font-size:16px; }
+      .chart-wrap { padding:16px 10px 8px; }
+      .chart text { font-size:10px; }
+      .footer-inner { display:block; }
+      .footer-inner span { display:block; margin-top:10px; }
+    }
+    @media print {
+      nav { position:relative; }
+      .hero { min-height:520px; }
+      .chart-wrap, .dark-panel, .panel { break-inside:avoid; }
+      section { padding:52px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <nav>
+      <div class="wrap nav-inner">
+        <div class="brand"><img src="../assets/Integra Verde.png" alt="Integra Verde"><span>Integra Verde</span></div>
+        <span class="eyebrow">Reporte de cierre</span>
+      </div>
+    </nav>
+    <div class="wrap hero-copy">
+      <div class="eyebrow">Reporte digital</div>
+      <h1>Septiembre<br><span>2026</span></h1>
+      <p class="lead">Lectura ejecutiva del desempeño digital de Integra Verde: contenido social, adquisición y comportamiento del sitio web durante septiembre.</p>
+      <div class="period">01 septiembre - 29 septiembre 2026</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="light">
+      <div class="wrap">
+        <div class="section-kicker">01 / Resultados de septiembre</div>
+        <div class="summary">
+          <div>
+            <h2>Resultados del<br><span style="color:transparent;-webkit-text-stroke:1px rgba(17,21,17,.45)">mes</span></h2>
+            <p class="intro">Septiembre cerró con actividad estable en contenido y una presencia clara de búsqueda pagada en el sitio. La oportunidad inmediata está en convertir ese tráfico en formularios enviados y oportunidades comerciales medibles.</p>
+          </div>
+          <div>
+            <p class="signal"><strong>Paid Search concentró la adquisición:</strong> aportó 148 sesiones y 138 usuarios. El sitio recibió 246 sesiones, 210 usuarios activos y 147 clics registrados en Ads.</p>
+            <ul class="checklist">
+              <li><b>+</b><span>Instagram publicó 7 piezas: 3 carruseles y 4 posts, con 174 visualizaciones y 18 reacciones.</span></li>
+              <li><b>+</b><span>La visualización promedio por publicación subió a 24.9, frente a 23.6 en agosto.</span></li>
+              <li><b>+</b><span>GA4 registra 5 inicios de formulario, pero ningún evento clave ni envío exitoso configurado.</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid kpis">
+          <div class="kpi"><span class="kpi-label">Publicaciones</span><span class="kpi-value">7</span><span class="kpi-note">3 carruseles · 4 posts</span></div>
+          <div class="kpi accent"><span class="kpi-label">Visualizaciones sociales</span><span class="kpi-value">174</span><span class="kpi-note">24.9 promedio por publicación</span></div>
+          <div class="kpi"><span class="kpi-label">Usuarios activos</span><span class="kpi-value">210</span><span class="kpi-note">GA4 · 01–29 septiembre</span></div>
+          <div class="kpi"><span class="kpi-label">Clics de Ads</span><span class="kpi-value">147</span><span class="kpi-note">Google Ads · 01–29 septiembre</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="light">
+      <div class="wrap">
+        <div class="section-kicker">02 / Comparativa histórica</div>
+        <h2>Redes de abril<br><span style="color:transparent;-webkit-text-stroke:1px rgba(17,21,17,.45)">a septiembre</span></h2>
+        <p class="intro">Septiembre tuvo menor volumen que agosto, pero elevó ligeramente la visualización media por pieza. Junio se mantiene como el pico de alcance orgánico del periodo.</p>
+        <table class="table history-table">
+          <thead>
+            <tr><th>Mes</th><th class="num">Publicaciones</th><th class="num">Visualizaciones</th><th class="num">Promedio</th><th class="num">Reacciones</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Abril</td><td class="num">7</td><td class="num">169</td><td class="num">24.1</td><td class="num">12</td></tr>
+            <tr><td>Mayo</td><td class="num">6</td><td class="num">179</td><td class="num">29.8</td><td class="num">19</td></tr>
+            <tr><td>Junio</td><td class="num">10</td><td class="num">545</td><td class="num">54.5</td><td class="num">28</td></tr>
+            <tr><td>Julio</td><td class="num">11</td><td class="num">236</td><td class="num">21.5</td><td class="num">29</td></tr>
+            <tr><td>Agosto</td><td class="num">9</td><td class="num">212</td><td class="num">23.6</td><td class="num">20</td></tr>
+            <tr><td>Septiembre</td><td class="num">7</td><td class="num">174</td><td class="num">24.9</td><td class="num">18</td></tr>
+          </tbody>
+        </table>
+        <div class="chart-wrap">
+          <svg class="chart" viewBox="0 0 980 340" role="img" aria-label="Comparativa histórica de visualizaciones en Instagram de abril a septiembre">
+            <line class="gridline" x1="70" y1="55" x2="930" y2="55"/>
+            <line class="gridline" x1="70" y1="125" x2="930" y2="125"/>
+            <line class="gridline" x1="70" y1="195" x2="930" y2="195"/>
+            <line class="gridline" x1="70" y1="265" x2="930" y2="265"/>
+            <line class="axis" x1="70" y1="265" x2="930" y2="265"/>
+            <text x="27" y="60">600</text><text x="35" y="130">400</text><text x="35" y="200">200</text><text x="47" y="270">0</text>
+            <polyline class="line" points="110,206 278,202 446,74 614,182 782,191 900,204"/>
+            <circle class="dot" cx="110" cy="206" r="7"/><circle class="dot" cx="278" cy="202" r="7"/><circle class="dot" cx="446" cy="74" r="7"/><circle class="dot" cx="614" cy="182" r="7"/><circle class="dot" cx="782" cy="191" r="7"/><circle class="dot" cx="900" cy="204" r="7"/>
+            <text x="96" y="300">ABR</text><text x="264" y="300">MAY</text><text x="432" y="300">JUN</text><text x="600" y="300">JUL</text><text x="768" y="300">AGO</text><text x="886" y="300">SEP</text>
+            <text x="98" y="190" fill="#d6f59a">169</text><text x="266" y="186" fill="#d6f59a">179</text><text x="431" y="57" fill="#d6f59a">545</text><text x="602" y="166" fill="#d6f59a">236</text><text x="770" y="175" fill="#d6f59a">212</text><text x="880" y="188" fill="#d6f59a">174</text>
+          </svg>
+          <div class="legend"><span><i></i>Visualizaciones por mes</span><span>Junio: máximo del periodo</span><span>Septiembre: 17.9% menos que agosto</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-kicker">03 / Lectura del mes</div>
+        <h2>Contenido y<br><span style="color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.72)">pauta</span></h2>
+        <div class="grid cols" style="margin-top:42px">
+          <div class="dark-panel">
+            <h3>Contenido que destacó</h3>
+            <p>El carrusel del 8 de septiembre, enfocado en calcular cuántos paneles solares necesita una vivienda, fue la pieza con más visualizaciones: 36. El carrusel del 24, sobre el uso del cotizador, generó 4 reacciones, el máximo del mes.</p>
+            <p class="note">La línea educativa y orientada a cotización mostró las señales más fuertes del contenido publicado.</p>
+          </div>
+          <div class="dark-panel">
+            <h3>Tráfico de búsqueda</h3>
+            <p>Google Ads registró 147 clics en el periodo. El 8 de septiembre fue el día con mayor volumen, con 18 clics. En GA4, Paid Search aportó 148 sesiones y una tasa de interacción de 36.5%.</p>
+            <p class="note">El exporte de Ads recibido incluye clics; no contiene inversión, impresiones, CTR, CPC ni conversiones.</p>
+          </div>
+        </div>
+        <div class="grid top-posts">
+          <article class="top-post">
+            <div class="rank">TOP 01 · 08 SEP · CARRUSEL</div>
+            <h3>Cuántos paneles solares necesito</h3>
+            <p><strong>36 visualizaciones</strong><br>3 reacciones</p>
+            <blockquote class="instagram-media instagram-embed" data-instgrm-permalink="https://www.instagram.com/p/DdC_uVwmi23/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DdC_uVwmi23/" target="_blank" rel="noopener">Ver publicación en Instagram</a></blockquote>
+          </article>
+          <article class="top-post">
+            <div class="rank">TOP 02 · 14 SEP · POST</div>
+            <h3>Ahorro en luz con paneles solares</h3>
+            <p><strong>28 visualizaciones</strong><br>1 reacción · 1 guardado</p>
+            <blockquote class="instagram-media instagram-embed" data-instgrm-permalink="https://www.instagram.com/p/DdRhAFPDT09/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DdRhAFPDT09/" target="_blank" rel="noopener">Ver publicación en Instagram</a></blockquote>
+          </article>
+          <article class="top-post">
+            <div class="rank">TOP 03 · 24 SEP · CARRUSEL</div>
+            <h3>Cotizador: kWh o pago bimestral</h3>
+            <p><strong>26 visualizaciones</strong><br>4 reacciones</p>
+            <blockquote class="instagram-media instagram-embed" data-instgrm-permalink="https://www.instagram.com/p/DdrexBwCbCV/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DdrexBwCbCV/" target="_blank" rel="noopener">Ver publicación en Instagram</a></blockquote>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="light">
+      <div class="wrap">
+        <div class="section-kicker">04 / Datos del sitio web</div>
+        <h2>Tráfico y<br><span style="color:transparent;-webkit-text-stroke:1px rgba(17,21,17,.45)">audiencia</span></h2>
+        <div class="grid kpis">
+          <div class="kpi"><span class="kpi-label">Usuarios activos</span><span class="kpi-value">210</span><span class="kpi-note">205 usuarios nuevos</span></div>
+          <div class="kpi accent"><span class="kpi-label">Sesiones</span><span class="kpi-value">246</span><span class="kpi-note">evento session_start</span></div>
+          <div class="kpi"><span class="kpi-label">Eventos medidos</span><span class="kpi-value">1,045</span><span class="kpi-note">283 page_view · 167 scroll</span></div>
+          <div class="kpi"><span class="kpi-label">Formularios iniciados</span><span class="kpi-value">5</span><span class="kpi-note">sin evento de envío exitoso</span></div>
+        </div>
+        <div class="grid cols" style="margin-top:16px">
+          <div class="dark-panel">
+            <h3>Canales principales</h3>
+            <div class="bar-list">
+              <div class="bar-row"><span>Paid Search</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><b>148</b></div>
+              <div class="bar-row"><span>Direct</span><div class="bar-track"><div class="bar-fill" style="width:44%"></div></div><b>65</b></div>
+              <div class="bar-row"><span>Organic Search</span><div class="bar-track"><div class="bar-fill" style="width:11%"></div></div><b>17</b></div>
+              <div class="bar-row"><span>Organic Social</span><div class="bar-track"><div class="bar-fill" style="width:7%"></div></div><b>10</b></div>
+              <div class="bar-row"><span>Referral</span><div class="bar-track"><div class="bar-fill" style="width:2%"></div></div><b>3</b></div>
+            </div>
+          </div>
+          <div class="dark-panel">
+            <h3>Audiencia por dispositivo y ciudad</h3>
+            <table class="table" style="color:#dce4da"><thead><tr><th>Dimensión</th><th class="num">Usuarios</th><th class="num">Interacción</th></tr></thead><tbody><tr><td>Mobile</td><td class="num">142</td><td class="num">32.7%</td></tr><tr><td>Desktop</td><td class="num">65</td><td class="num">43.0%</td></tr><tr><td>Mexico City</td><td class="num">70</td><td class="num">44.7%</td></tr><tr><td>Naucalpan de Juarez</td><td class="num">24</td><td class="num">40.7%</td></tr><tr><td>No identificado</td><td class="num">27</td><td class="num">25.9%</td></tr></tbody></table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-kicker">05 / Recomendaciones</div>
+        <h2>Siguientes<br><span style="color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.72)">acciones</span></h2>
+        <div class="grid rec-grid">
+          <div class="rec">
+            <h3>Optimizar Paid Search</h3>
+            <p>Priorizar las búsquedas que llevan al cotizador y revisar la experiencia de esa página. Paid Search genera el mayor volumen, pero solo 36.5% de sus sesiones interactúan.</p>
+          </div>
+          <div class="rec">
+            <h3>Repetir la fórmula</h3>
+            <p>Dar continuidad a carruseles educativos con llamados a calcular ahorro o cotizar. Las piezas de dimensionamiento y uso del cotizador lideraron las señales de septiembre.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>Integra Verde · Reporte digital</span>
+      <span>Presentado por WE SPEAK · Cierre 29 septiembre 2026</span>
+    </div>
+  </footer>
+  <script async src="https://www.instagram.com/embed.js"></script>
+</body>
+</html>
